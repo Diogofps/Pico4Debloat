@@ -12,13 +12,12 @@ The ones on the recommended list have been tested by me and made the headset sna
 ## How to debloat your Pico 4
 1. Download the [Android SDK Platform Tools ZIP](https://developer.android.com/tools/releases/platform-tools) from Google.
 2. Extract the folder to a known location on your PC.
-3. Connect the Pico 4 to your PC via a high-quality USB cable.
-4. Put the headset on and check for a pop-up asking to **"Allow USB Debugging"**; select **Always allow from this computer** and click OK.
-5. On your PC, open the extracted `platform-tools` folder.
-6. Right-click an empty space inside the folder and select **Open terminal here** (or Open PowerShell).
-7. Type `./adb devices` and press Enter to ensure your Pico 4 is listed.
-8. Type `./adb shell` and press Enter to access the headset's internal command line.
-9. Copy the commands you want from the lists below, paste them into the terminal, and press Enter.
+3. Connect the Pico 4 to your PC.
+4. On your PC, open the extracted `platform-tools` folder.
+5. Right-click an empty space inside the folder and select **Open terminal here** (or Open PowerShell).
+6. Type `./adb devices` and press Enter to ensure your Pico 4 is listed.
+7. Type `./adb shell` and press Enter to access the headset's internal command line.
+8. Copy the commands you want from the lists below, paste them into the terminal and press Enter.
 
 *Note: If you get an "Unknown package" error, it just means that specific app is already missing from your software version; you can safely ignore it.*
 
