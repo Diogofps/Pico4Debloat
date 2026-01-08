@@ -138,9 +138,20 @@ settings delete secure long_press_timeout
 settings delete secure multi_press_timeout
 settings delete global settings_enable_monitor_phantom_procs
 device_config set_sync_disabled_for_tests none
-pm compile -a -f -m speed-profile
 pm bg-dexopt-job
 ```
+---
 
+## An explanation about `pm compile -a -f -m speed`
+Think of each APK as a compressed book written in a foreign language. Normally, every time you open an app, the headset has to translate it into the processor's native language while you're using it (that system is called JIT, Just-In-Time). This constant translation during gameplay is what causes longer loading times and occasional stutters.​
+
+When you run `pm compile -a -f -m speed`, you are telling the headset to translate the entire book and save it in the processor's language permanently (AOT, Ahead-Of-Time).
+
+Since the processor no longer needs to translate on the fly, apps load faster and run much more fluidly, and it may help saving the battery too. The trade-off is that this translated version takes up significantly more storage space than the original compressed APK.
+
+That command will compile all the apps currently installed, but will not affect future installs. In case you want to do it just to one app, you can run this instead:
+`adb shell pm compile -m speed -f com.pico.browser`
+
+Just replace the `com.pico.browser` with the name of the package you want and you're set
 
 
