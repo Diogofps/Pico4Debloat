@@ -25,7 +25,6 @@ The ones on the recommended list have been tested by me and made the headset sna
 These are the commands I recommend using to make your Pico 4 faster and cleaner without breaking anything.
 ```
 pm disable-user com.android.bips
-pm disable-user com.android.bluetoothmidiservice
 pm disable-user com.android.bookmarkprovider
 pm disable-user com.android.carrierconfig.overlay.common
 pm disable-user com.android.egg
