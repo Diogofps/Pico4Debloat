@@ -2,8 +2,11 @@
 A guide on how to debloat the Pico 4 VR headset to improve performance and privacy.
 
 The ones on the recommended list have been tested by me and made the headset snappier, while also deleting some useless features (like the guide you only use during the first time setup of the headset)
+You can choose the download and run the script, or run the commands yourself on the terminal.
 
-### First, turn on the Developer Mode on your Pico 4 headset
+![screenshot](Pico4Debloat_printscreen.png)
+
+### First, turn on the Developer Mode and USB Debugging on your Pico 4 headset
 1. Put on your headset and go to **Settings**.
 2. Select **General** and then **About**.
 3. Scroll down to **Software Version** (or Build Number) and click it repeatedly (7 to 10 times) until a message says "You are now a developer".
@@ -14,12 +17,20 @@ The ones on the recommended list have been tested by me and made the headset sna
 2. Extract the folder to a known location on your PC.
 3. Connect the Pico 4 to your PC.
 4. On your PC, open the extracted `platform-tools` folder.
-5. Right-click an empty space inside the folder and select **Open terminal here** (or Open PowerShell).
-6. Type `./adb devices` and press Enter to ensure your Pico 4 is listed.
-7. Type `./adb shell` and press Enter to access the headset's internal command line.
-8. Copy the commands you want from the lists below, paste them into the terminal and press Enter.
+Now you have two options: 
 
-*Note: If you get an "Unknown package" error, it just means that specific app is already missing from your software version; you can safely ignore it.*
+### Option 1: Using the bat file
+1. Download the Pico4Debloat.bat file
+2. Place it inside the `platform-tools` folder
+3. Run Pico4Debloat.bat file. From there, you can choose what packages to disable or choose to revert all changes.
+
+### Option 2: Using the Windows Terminal
+1. Right-click an empty space inside the folder and select **Open terminal here** (or Open PowerShell).
+2. Type `./adb devices` and press Enter to ensure your Pico 4 is listed.
+3. Type `./adb shell` and press Enter to access the headset's internal command line.
+4. Copy the commands you want from the lists below, paste them into the terminal and press Enter.
+
+   *Note: If you get an "Unknown package" error, it just means that specific app is already missing from your software version; you can safely ignore it.*
 
 ## General recommended commands
 These are the commands I recommend using to make your Pico 4 faster and cleaner without breaking anything.
@@ -81,40 +92,38 @@ pm disable-user com.pvr.tobservice
 ```
 
 #### Optional commands (disable core Pico apps)
-```
-Files: adb shell pm disable-user com.pvr.filemanager
-Avatar: pm disable-user com.pvr.avatareditor
-Fitness: adb shell pm disable-user com.pvr.pvrfit
-Browser: pm disable-user com.pico.browser.overseas
-Friends: pm disable-user com.picopui.im
-Explore: adb shell pm disable-user com.pvr.home
-Screencast: adb shell pm disable-user com.pvr.picocast
 
-System update: 
-pm disable-user com.picovr.firmwareupdate
-pm disable-user com.picovr.updatesystem
-
-PICO Connect:
-pm disable-user com.picovr.picostreamassistant
-pm disable-user com.picoxr.bstreamassistant
-```
+| Command | Description |
+| --- | --- |
+pm disable-user com.picovr.firmwareupdate | Disables firmware update |
+pm disable-user com.picovr.updatesystem | Disables firmware update |
+pm disable-user com.picovr.picostreamassistant | Disables PICO Connect
+pm disable-user com.picoxr.bstreamassistant | Disables PICO Connect
+pm disable-user com.pvr.avatareditor | Avatar Editor
+pm disable-user com.pvr.picocast | Screencast
+pm disable-user com.pico.browser.overseas | Browser
+pm disable-user com.pvr.pvrfit | Fitness
+pm disable-user com.picopui.im | Friends
+pm disable-user com.pvr.home | Explore
+pm disable-user com.pvr.filemanager | Files 
 
 ---
 
 ## Commands I recommend skipping
 These commands were excluded from the main list due to potential side effects.
-```
-pm disable-user com.android.inputmethod.latin - **DO NOT** run unless you have another keyboard installed.
-pm disable-user com.android.hotspot2.osulogin - Disables captive portals. If you don't use public Wi-Fi (airports/hotels), you can disable it.
-pm disable-user com.android.musicfx - Disables system EQ; may degrade sound quality.
-pm disable-user com.picoxr.mirrorcast - Breaks native screen casting to TVs.
-pm disable-user com.pvr.lanserver - Breaks discovery via the Pico smartphone app.
-pm disable-user com.qualcomm.wfd.service - Likely to break wireless projection (Miracast/Cast).
-pm disable-user com.qualcomm.qti.qms.service.trustzoneaccess - May break Store purchases and DRM (Netflix/YouTube).
-pm disable-user vendor.qti.qesdk.sysservice - Disables low-level Qualcomm engineering diagnostics.
-pm disable-user com.quicinc.voice.activation - May break voice-to-text features.
-pm compile -a -f -m speed - Improves speed but significantly increases storage usage.
-```
+| Command | Description |
+| --- | --- |
+| pm disable-user com.android.inputmethod.latin | **DO NOT** run unless you have another keyboard installed. |
+| pm disable-user com.android.hotspot2.osulogin | Disables captive portals. If you don't use public Wi-Fi (airports/hotels), you can disable it. |
+| pm disable-user com.android.musicfx | Disables system EQ; may degrade sound quality. |
+| pm disable-user com.picoxr.mirrorcast | Breaks native screen casting to TVs. |
+| pm disable-user com.pvr.lanserver | Breaks discovery via the Pico smartphone app. |
+| pm disable-user com.qualcomm.wfd.service | Likely to break wireless projection (Miracast/Cast). |
+| pm disable-user com.qualcomm.qti.qms.service.trustzoneaccess | May break Store purchases and DRM (Netflix/YouTube). |
+| pm disable-user vendor.qti.qesdk.sysservice | Disables low-level Qualcomm engineering diagnostics. |
+| pm disable-user com.quicinc.voice.activation | May break voice-to-text features. |
+| pm compile -a -f -m speed | Improves speed but significantly increases storage usage. |
+
 The following 4 deal with the screen's color calibration, brightness and contrast
 Disabling them might change image quality.
 ```
@@ -125,7 +134,7 @@ pm disable-user com.qti.dcf
 ```
 
 ## Need to revert all actions?
-You can replace `pm disable-user` with `pm enable` for each package and run that command. Example: `pm disable-user com.android.bips` becomes `pm enable com.android.bips`
+You can replace `pm disable-user` with `pm enable` for each package and run that command. (Example: `pm disable-user com.android.bips` becomes `pm enable com.android.bips`)
 
 Then, run the commands below.
 
@@ -139,6 +148,11 @@ settings delete global settings_enable_monitor_phantom_procs
 device_config set_sync_disabled_for_tests none
 pm bg-dexopt-job
 ```
+Tip:
+If you want to see the list of packages that are disabled, run `pm list packages -d`. 
+
+To see the list of enabled packages, run `pm list packages -e`
+
 ---
 
 ## An explanation about `pm compile -a -f -m speed`
@@ -152,5 +166,11 @@ That command will compile all the apps currently installed, but will not affect 
 `adb shell pm compile -m speed -f com.pico.browser`
 
 Just replace the `com.pico.browser` with the name of the package you want and you're set
+
+---
+
+## FAQ / Troubleshooting
+Under construction
+
 
 
