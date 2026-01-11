@@ -83,7 +83,7 @@ pm disable-user com.pvr.tobservice
 #### Optional commands (disable core Pico apps)
 ```
 Files: adb shell pm disable-user com.pvr.filemanager
-Avatar: pm disable-user com.pvr.avataredito
+Avatar: pm disable-user com.pvr.avatareditor
 Fitness: adb shell pm disable-user com.pvr.pvrfit
 Browser: pm disable-user com.pico.browser.overseas
 Friends: pm disable-user com.picopui.im
